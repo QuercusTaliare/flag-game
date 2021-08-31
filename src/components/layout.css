@@ -595,3 +595,13 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+.site {
+  display: flex;
+  min-height: 85vh;
+  flex-direction: column;
+}
+
+.site main {
+  flex-grow: 1;
+}

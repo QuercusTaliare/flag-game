@@ -32,11 +32,15 @@ const Layout = ({ children }) => {
           maxWidth: 960,
           padding: `0 1.0875rem 1.45rem`,
         }}
+        className="site"
       >
+
         <main>{children}</main>
+
+
         <footer
           style={{
-            marginTop: `2rem`,
+            padding: `2rem 0`,
           }}
         >
           © {new Date().getFullYear()}, Built with
