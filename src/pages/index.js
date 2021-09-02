@@ -4,6 +4,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Nav from "../components/Nav"
 
 
 
@@ -22,13 +23,9 @@ const IndexPage = () => {
   return (
     <Layout>
       <Seo title="Home" />
+      <Nav />
       <p>{data.site.siteMetadata?.description || `Need Description`}</p>
       
-      {/* INSERT LINK TO START GAME */}
-      <p>
-        <Link to="/game/">Play</Link>
-      </p>
-
       {/* <StaticImage
         src="../images/gatsby-astronaut.png"
         width={300}
