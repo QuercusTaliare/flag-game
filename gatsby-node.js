@@ -1,4 +1,6 @@
 const fetch = require('isomorphic-fetch');
+// const { createRemoteFileNode } = require('gatsby-source-filesystem');
+
 
 async function fetchCountriesAndTurnIntoNodes({
   actions,
@@ -35,3 +37,23 @@ async function fetchCountriesAndTurnIntoNodes({
 exports.sourceNodes = async (params) => {
   await Promise.all([fetchCountriesAndTurnIntoNodes(params)])
 }
+
+// exports.onCreateNode = async ({
+//   node,
+//   actions: { createNode },
+//   createNodeId,
+//   getCache,
+// }) => {
+//   if (node.internal.type === 'Country') {
+//     const fileNode = await createRemoteFileNode({
+//       url: node.flag,
+//       parentNodeId: node.id,
+//       createNode,
+//       createNodeId,
+//       getCache,
+//     });
+//     if (fileNode) {
+//       node.remoteImage__NODE = fileNode.id;
+//     }
+//   }
+// }
