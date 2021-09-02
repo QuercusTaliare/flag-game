@@ -23,7 +23,7 @@ async function fetchCountriesAndTurnIntoNodes({
       },
     }
 
-    // 3. Create a node for that beer
+    // 3. Create a node for that flag
     actions.createNode({
       ...country,
       ...nodeMeta
