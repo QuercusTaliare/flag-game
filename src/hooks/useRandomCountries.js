@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useRandomCountries() {
+export default function useRandomCountries({ data }) {
 
   // const [randomCountries, setRandomCountries] = useState([]);
 
@@ -32,8 +32,44 @@ export default function useRandomCountries() {
 
   }
 
-  return {
-    selectRandomCountries
+  function shuffleOptions(options) {
+    const shuffledOptions = options
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a,b) => a.sort - b.sort)
+      .map(({ value }) => value)
+    
+    return shuffledOptions
   }
+
+  function chooseCorrectAnswer(answerOptions) {
+
+    const answer = selectRandomCountry(answerOptions);
+
+    const allShuffledOptions = shuffleOptions(answerOptions);
+
+    return {
+      answer: answer,
+      allShuffledOptions: allShuffledOptions
+    }
+
+  }
+
+  function chooseOptionsAndSelectAnswer(countryList, amount) {
+
+    const randomCountries = selectRandomCountries(countryList, amount);
+
+    const options = chooseCorrectAnswer(randomCountries);
+
+    return options
+  }
+
+
+  useEffect(() => {
+
+    const options = chooseOptionsAndSelectAnswer(data.allCountry.nodes, 4);
+
+    console.log(options);
+
+  }, [])
 
 }

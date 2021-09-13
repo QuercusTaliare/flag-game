@@ -6,18 +6,9 @@ import useRandomCountries from "../hooks/useRandomCountries"
 
 const GamePage = ({ data }) => {
 
-  const [randomCountries, setRandomCountries] = useState([]);
+  const [answerOptions, setAnswerOptions] = useState([]);
 
-  const { selectRandomCountries } = useRandomCountries();
-  
-  useEffect(() => {
-    const rando = selectRandomCountries(data.allCountry.nodes, 4);
-
-    setRandomCountries(rando);
-
-    // Should this setRandomCountries be put inside the hook?
-
-  }, [])
+  useRandomCountries({ data });
 
   // Create hook to select four random countries
   // Select a single country to be the correct answer
