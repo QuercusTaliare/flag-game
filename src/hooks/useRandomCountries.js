@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 
-export default function useRandomCountries({ data }) {
+// Change Hook Name
 
-  // const [randomCountries, setRandomCountries] = useState([]);
-
-  // const [allCountries, setAllCountries] = useState(data.allCountry.nodes);
+export default function useRandomCountries({ data, setAnswerOptions, setAnswer }) {
 
   function selectRandomCountry(countryList) {
 
@@ -68,7 +66,9 @@ export default function useRandomCountries({ data }) {
 
     const options = chooseOptionsAndSelectAnswer(data.allCountry.nodes, 4);
 
-    console.log(options);
+    setAnswerOptions(options.allShuffledOptions);
+
+    setAnswer(options.answer)
 
   }, [])
 
