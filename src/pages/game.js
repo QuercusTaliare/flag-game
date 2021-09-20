@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import Nav from "../components/Nav"
 import useForm from "../hooks/useForm"
 import useRandomCountries from "../hooks/useRandomCountries"
+import useSubmitAnswer from "../hooks/useSubmitAnswer"
 import "./game.modules.css";
 
 const GamePage = ({ data }) => {
@@ -15,8 +16,10 @@ const GamePage = ({ data }) => {
   useRandomCountries({ data, setAnswerOptions, setAnswer });
 
   const { values, updateValue } = useForm({
-    option: ''
+    option: null
   })
+
+  const {isCorrect, submitted, testChoice} = useSubmitAnswer({ answer, choice: answerOptions[values.option]})
 
   // Create submit button function/hook
     // useSubmitAnswer
@@ -44,7 +47,7 @@ const GamePage = ({ data }) => {
         
         <p>Choose the correct flag</p>
         <p>{answer?.name}</p>
-        <form>
+        <form onSubmit={testChoice}>
           <ul className="options-list">
             {
               answerOptions?.map((option, index) => {
@@ -59,8 +62,8 @@ const GamePage = ({ data }) => {
                           type="radio" 
                           id={optionLetter}
                           name="option" 
-                          value={optionLetter}
-                          checked={values.option === optionLetter} 
+                          value={index}
+                          checked={parseInt(values.option) === index} 
                           onChange={updateValue}
                         />
                       </label>
@@ -72,6 +75,16 @@ const GamePage = ({ data }) => {
           </ul>
           <button type="submit">Choose</button>
         </form>
+
+        {/* 
+        In progress: If the form has been submitted and the answer is correct, show a Correct message. Otherwise, show that is incorrect. 
+        <p>
+          {
+            (submitted && isCorrect)
+            &&
+            <span>That is correct</span>
+          }
+        </p> */}
 
       </div>
     </Layout>
